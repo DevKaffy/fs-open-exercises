@@ -13,18 +13,35 @@ function App() {
   ];
   const [selected, setSelected] = useState(0);
   console.log(selected);
+  const arrOfVotes = Array(anecdotes.length).fill(0);
+
+  const [votes, setVotes] = useState(arrOfVotes);
+  console.log(votes);
+
+  const handleVotes = () => {
+    const votePoints = [...votes];
+    votePoints[selected] += 1;
+    setVotes(votePoints);
+  };
+
+  const maxVote = Math.max(...votes);
+  const highestPersisted = anecdotes[votes.indexOf(maxVote)];
+  console.log(maxVote);
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
-      <div>
-        <Button text="vote" />
-        <Button
-          text="next anecdote"
-          anecdotes={anecdotes}
-          setSelected={setSelected}
-        />
-      </div>
+      <p>has {votes[selected]} votes</p>
+      <button onClick={handleVotes}>vote</button>
+      <Button
+        text="next anecdote"
+        anecdotes={anecdotes}
+        setSelected={setSelected}
+      />
+      <h1>Anecdote with most votes</h1>
+      <p>{highestPersisted}</p>
+      <p>has {maxVote} votes</p>
     </div>
   );
 }
