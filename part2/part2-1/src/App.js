@@ -3,8 +3,8 @@ import Course from './Components/Course'
 import Content from './Components/Content'
 import Total from './Components/Total'
 
-
 const App = () => {
+  // const [notes, setNotes] = useState(props.notes)
   const course = [
   {
     id: 1,
